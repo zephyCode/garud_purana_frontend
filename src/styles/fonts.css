@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'ZombieFont';
+  src: url('../assets/fonts/ZombieHolocaust-0aL4.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bloody';
+  src: url('../assets/fonts/BLOODY.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Spider';
+  src: url('../assets/fonts/Spiderfingers.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Spirits';
+  src: url('../assets/fonts/Spiderfingers.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Amethysta&family=Caesar+Dressing&display=swap');
