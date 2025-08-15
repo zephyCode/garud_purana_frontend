@@ -2,26 +2,30 @@ import Typewriter from 'typewriter-effect';
 import { useLocation } from 'react-router-dom';
 import '../styles/fonts.css';
 import './Result.css';
+import FloatingBubble from '../components/FloatingBubble';
 
 const Result = () => {
     const location = useLocation();
     const { result } = location.state || {};
-
-    
+    const links: { name: string; nav: string }[] = [
+    {name: '🏠 Home', nav:'/'},
+    {name: '🔥 Forum', nav:'/forum'}
+  ];  
 
     return (
         <div className="min-h-screen w-full relative bg-black overflow-hidden text-white">
             <video
-                className="absolute inset-0 w-full h-full object-cover z-0"
+                className="absolute inset-0 w-full h-full object-cover z-0 bg-video"
                 src={`${result?.punishment}.mp4`}
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="auto"
+                style={{ objectFit: 'cover' }}
             />
 
-            <div className="absolute inset-0 bg-gradient-to-b from-red-900/60 via-black/80 to-black/90 z-10" />
+            {/* <div className="absolute inset-0 bg-gradient-to-b from-red-900/60 via-black/80 to-black/90 z-10" /> */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,0,0,0.05)_10%,_transparent_80%)] z-20" />
 
             <div className="relative z-40 flex flex-col items-center justify-start min-h-screen pt-28 pb-16 px-4 sm:px-6 md:px-10">
@@ -50,10 +54,11 @@ const Result = () => {
                                 }}
                             />
                         ) : 'No description available.'}
-                        <span className="typewriter-cursor"></span>
+                        {/* <span className="typewriter-cursor"></span> */}
                     </h2>
                 </div>
             </div>
+            <FloatingBubble links={links}/>
         </div>
     );
 };
