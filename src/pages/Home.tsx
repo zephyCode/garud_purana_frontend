@@ -9,19 +9,12 @@ import MainHeader from "../components/MainHeader";
 
 const Home = () => {
 
-  const links: [] = [
+  const links: { name: string; to: string }[] = [
     {name: 'Confess', to: '/confess'},
     {name: 'Forum', to: '/forum'}
   ];
 
-  const HellishIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block w-8 h-8 text-red-500 mr-2">
-      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-      <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-      <path d="M12 12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"></path>
-      <path d="M12 12a4 4 0 0 0-4-4"></path>
-    </svg>
-  );
+  // HellishIcon removed (unused)
 
   return (
     <div className="min-h-screen bg-black text-gray-300 font-serif overflow-x-hidden">
@@ -123,7 +116,7 @@ const Home = () => {
         </footer>
       </div>
 
-      <style jsx>{`
+  <style>{`
         .drop-shadow-glow {
           filter: drop-shadow(0 0 8px #ff0000);
         }
