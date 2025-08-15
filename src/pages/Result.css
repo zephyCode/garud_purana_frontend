@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Amethysta&family=Caesar+Dressing&display=swap");
 
 .fire-text {
@@ -19,26 +20,65 @@
   }
 }
 
-.typewriter-active {
-  font-family: "Amethysta", serif;
+
+
+.typewriter {
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
   overflow: hidden;
   white-space: pre-wrap;
-  max-height: 0;
-  animation: typing 10s steps(80, end) forwards;
   color: #ff4444;
   line-height: 1.6;
+  position: relative;
+  font-size: 1.2em;
+  letter-spacing: 0.03em;
 }
 
-@keyframes typing {
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 1000px;
+.typewriter-cursor {
+  display: inline-block;
+  width: 1ch;
+  height: 1.2em;
+  vertical-align: bottom;
+  border-right: 2px solid #ff4444;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
+
+
+
+@keyframes blink {
+  0%, 100% { border-color: #ff4444; }
+  50% { border-color: transparent; }
+}
+
+/* Video background improvements */
+.bg-video {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  object-fit: cover; /* ensures the video covers the container */
+  object-position: center center;
+  filter: saturate(1.05) contrast(1.02) brightness(0.85) blur(0.2px);
+  transform-origin: center center;
+  transition: opacity 600ms ease, transform 600ms ease, filter 400ms ease;
+  will-change: opacity, transform, filter;
+}
+
+/* subtle zoom effect on larger screens for cinematic feel */
+@media (min-width: 768px) {
+  .bg-video {
+    transform: scale(1.02);
   }
 }
 
-/* Medium Screens */
+/* reduce effects on small screens for performance */
+@media (max-width: 480px) {
+  .bg-video {
+    filter: none;
+    transform: none;
+  }
+}
+
+
 @media (max-width: 768px) {
   .fire-text {
     font-size: 2.5rem !important;
@@ -46,43 +86,12 @@
   }
 }
 
-/* Small Screens */
 @media (max-width: 480px) {
   .fire-text {
     font-size: 2rem !important;
     animation: none !important;
     text-shadow: 0 0 1px #ff3300, 0 0 2px #ff5500;
   }
-
-  .typewriter-active {
-    font-size: 0.9rem !important;
-  }
 }
 
-.video_container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
 
-.bg_video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  object-fit: cover;
-}
-
-.content_overlay {
-  position: relative;
-  z-index: 1;
-  color: white;
-  text-align: center;
-  padding-top: 30vh;
-}
