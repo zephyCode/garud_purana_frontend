@@ -25,7 +25,7 @@ const Result = () => {
                 style={{ objectFit: 'cover' }}
             />
 
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-red-900/60 via-black/80 to-black/90 z-10" /> */}
+            <div className="absolute inset-0 bg-gradient-to-b from-red-900/60 via-black/80 to-black/90 z-10" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,0,0,0.05)_10%,_transparent_80%)] z-20" />
 
             <div className="relative z-40 flex flex-col items-center justify-start min-h-screen pt-28 pb-16 px-4 sm:px-6 md:px-10">

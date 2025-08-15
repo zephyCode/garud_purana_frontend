@@ -5,9 +5,6 @@ import '../styles/fonts.css';
 import './Confession.css';
 import { Modal, Box, TextField } from '@mui/material';
 import FloatingBubble from '../components/FloatingBubble';
-
-
-
 const Confession = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showModal, setShowModal] = useState(true);
@@ -16,6 +13,9 @@ const Confession = () => {
   const [formValue, setFormValue] = useState({
     confession: { value: '', isValid: false },
   });
+  // Vite exposes env vars prefixed with VITE_ via import.meta.env
+  const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
+  console.log('VITE_REQUEST_URL ->', REQUEST_URL);
 
   const links: { name: string; nav: string }[] = [
     {name: '🏠 Home', nav:'/'},
@@ -34,12 +34,14 @@ const Confession = () => {
       },
     });
   };
+  
 
   const formSubmitHandler = async (event) => {
     event?.preventDefault();
     if (!formValue.confession.isValid) return;
     try {
-      const response = await axios.post('https://bf2v9n0q-5000.inc1.devtunnels.ms/', {
+  const postUrl = REQUEST_URL;
+  const response = await axios.post(postUrl, {
         text: formValue.confession.value,
       });
       if (response.status === 200) {

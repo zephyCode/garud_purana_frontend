@@ -12,6 +12,8 @@ const Forum = () => {
   const [votes, setVotes] = useState({});
   const [fingerprint, setFingerprint] = useState('');
 
+  const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
+
   const links = [{ name: 'Home', to: '/' }];
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Forum = () => {
 
   const fetchEntries = async () => {
     try {
-      const res = await axios.get('https://bf2v9n0q-5000.inc1.devtunnels.ms/forum');
+  const res = await axios.get(`${REQUEST_URL}/forum`);
       setEntries(res.data);
       setLoading(false);
     } catch (err) {
@@ -40,7 +42,7 @@ const Forum = () => {
     const fetchVotes = async () => {
       if (!fingerprint) return;
       try {
-        const res = await axios.post('https://bf2v9n0q-5000.inc1.devtunnels.ms/get-votes', {
+  const res = await axios.post(`${REQUEST_URL}/get-votes`, {
           fingerprint,
         });
 
@@ -60,7 +62,7 @@ const Forum = () => {
     setVotes(prev => ({ ...prev, [entryId]: voteType }));
 
     try {
-      const res = await axios.post(`https://bf2v9n0q-5000.inc1.devtunnels.ms/vote`, {
+  const res = await axios.post(`${REQUEST_URL}/vote`, {
         id: entryId,
         voteType: voteType,
         fingerprint: fingerprint,
