@@ -6,10 +6,20 @@ import Upvote from '../components/Upvote';
 import Downvote from '../components/Downvote';
 import MainHeader from '../components/MainHeader';
 
+interface Entry {
+  id: number;
+  created_on: string;
+  user_query: string;
+  upvotes: number;
+  downvotes: number;
+}
+
+type VotesMap = Record<number, 'upvote' | 'downvote'> | Record<number, string>;
+
 const Forum = () => {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [votes, setVotes] = useState({});
+  const [votes, setVotes] = useState<VotesMap>({});
   const [fingerprint, setFingerprint] = useState('');
 
   const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
@@ -70,13 +80,13 @@ const Forum = () => {
 
       if (res.status === 200) {
         setEntries(prevEntries =>
-          prevEntries.map(entry => {
+          prevEntries.map((entry) => {
             if (entry.id === entryId) {
               return {
                 ...entry,
                 upvotes: voteType === 'upvote' ? entry.upvotes + 1 : entry.upvotes,
                 downvotes: voteType === 'downvote' ? entry.downvotes + 1 : entry.downvotes,
-              };
+              } as Entry;
             }
             return entry;
           })
@@ -143,7 +153,7 @@ const Forum = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         .rain-overlay {
           background-image: url('/rain_effect.gif');
           background-size: cover;

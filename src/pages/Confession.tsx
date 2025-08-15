@@ -1,14 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/fonts.css';
 import './Confession.css';
-import { Modal, Box, TextField } from '@mui/material';
-import FloatingBubble from '../components/FloatingBubble';
+// ...existing code...
+import FloatingBubble from '../components/FloatingBubbleComponent';
 const Confession = () => {
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [showModal, setShowModal] = useState(true);
-  const [anonymousName, setAnonymousName] = useState('');
+  // removed unused modal-related state
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
     confession: { value: '', isValid: false },
@@ -21,12 +19,9 @@ const Confession = () => {
     {name: '🏠 Home', nav:'/'},
     {name: '🔥 Forum', nav:'/forum'}
   ];  
-  useEffect(() => {
-    const timer = setTimeout(() => setHasLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  // removed hasLoaded effect (unused)
 
-  const inputChangeHandler = (e) => {
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormValue({
       confession: {
         value: e.target.value,
@@ -36,7 +31,7 @@ const Confession = () => {
   };
   
 
-  const formSubmitHandler = async (event) => {
+  const formSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event?.preventDefault();
     if (!formValue.confession.isValid) return;
     try {
@@ -56,12 +51,7 @@ const Confession = () => {
 
  
 
-  const handleAnonymousSubmit = (e) => {
-    e.preventDefault();
-    if (anonymousName.trim().length > 1) {
-      setShowModal(false);
-    }
-  };
+  // anonymous modal is currently disabled; handler removed
 
   return (
     <div className="min-h-screen relative bg-black overflow-hidden">

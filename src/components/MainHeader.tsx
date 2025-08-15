@@ -1,8 +1,9 @@
-import type React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
+interface NavItem { name: string; to: string }
 interface Props {
-    links: []
+    links: NavItem[]
 }
 
 const MainHeader: React.FC<Props> = ({links}) => {
