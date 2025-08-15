@@ -1,17 +1,13 @@
-import { useState, useEffect } from 'react';
+import Typewriter from 'typewriter-effect';
 import { useLocation } from 'react-router-dom';
 import '../styles/fonts.css';
 import './Result.css';
 
 const Result = () => {
-    const [showTypewriter, setShowTypewriter] = useState(false);
     const location = useLocation();
     const { result } = location.state || {};
 
-    useEffect(() => {
-        const timer = setTimeout(() => setShowTypewriter(true), 1500);
-        return () => clearTimeout(timer);
-    }, []);
+    
 
     return (
         <div className="min-h-screen w-full relative bg-black overflow-hidden text-white">
@@ -40,10 +36,21 @@ const Result = () => {
 
                 <div className="w-full max-w-4xl">
                     <h2
-                        className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-center transition-opacity duration-1000 ${showTypewriter ? 'typewriter-active' : 'opacity-0'}`}
-                        style={{fontFamily: 'Bloody'}}
+                        className="typewriter text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-center"
+                        style={{ whiteSpace: 'pre-line', fontFamily:'Bloody' }}
                     >
-                        {result?.description || 'No description available.'}
+                        {result?.description ? (
+                            <Typewriter
+                                options={{
+                                    delay: 15,
+                                    cursor: '',
+                                }}
+                                onInit={(typewriter) => {
+                                    typewriter.typeString(result.description).start();
+                                }}
+                            />
+                        ) : 'No description available.'}
+                        <span className="typewriter-cursor"></span>
                     </h2>
                 </div>
             </div>
