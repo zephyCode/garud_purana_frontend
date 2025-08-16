@@ -38,7 +38,7 @@ const Home = () => {
         <main>
           <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 pb-12">
             <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-glow animate-pulse" style={{ fontFamily: 'Bloody, serif' }}>
-              Your Judgment Awaits
+              Your Judgement Awaits
             </h1>
             <p className="mt-4 max-w-2xl text-lg md:text-xl text-gray-400">
               Unburden your soul. Confess your transgressions and discover the fate that awaits you in the afterlife, as foretold in the ancient scriptures of the Garud Puran.
