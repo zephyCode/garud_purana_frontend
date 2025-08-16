@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+# Garud Purana
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Garud Purana is a comprehensive project aimed at delivering a wide array of functionalities, all accessible through a unified interface. The project is meticulously organized into several packages, each serving distinct purposes yet contributing to the overall ecosystem.
 
-Currently, two official plugins are available:
+## Core Packages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+At the heart of Garud Purana lie its core packages, which form the foundation of the entire project. These packages are:
 
-## Expanding the ESLint configuration
+- `@garud/purana`: The main package that ties all functionalities together.
+- `@garud/types`: A package dedicated to TypeScript types, ensuring type safety and enhancing the development experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Feature Packages
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Building upon the core packages, the feature packages introduce specific functionalities to the ecosystem. These include:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- `@garud/cli`: A command-line interface for interacting with the Garud Purana ecosystem.
+- `@garud/config`: A package for managing configurations across the project.
+- `@garud/eslint-config`: A set of ESLint configurations for maintaining code quality and consistency.
+- `@garud/prettier-config`: A Prettier configuration package for code formatting.
+- `@garud/vite-plugin`: A Vite plugin for optimizing the development and build process.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Development Tools
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+For development convenience, Garud Purana includes several tools and scripts:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `dev`: A script for running the project in development mode.
+- `build`: A script for building the project for production.
+- `lint`: A script for running ESLint to analyze code quality.
+- `format`: A script for formatting code using Prettier.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Getting Started
+
+To get started with Garud Purana, follow these steps:
+
+1. Install the necessary dependencies using your package manager of choice.
+2. Configure your editor or IDE to use the provided ESLint and Prettier configurations.
+3. Explore the available scripts in the `package.json` file to understand the development workflow.
+4. Start building your features using the provided packages and tools.
+
+## Contributing
+
+Contributions to Garud Purana are welcome! To contribute, please follow these guidelines:
+
+- Ensure your code adheres to the established ESLint and Prettier configurations.
+- Write clear and concise commit messages.
+- Submit a pull request detailing your changes and the motivation behind them.
+
+## License
+
+Garud Purana is licensed under the MIT License. See the `LICENSE` file for more information.
