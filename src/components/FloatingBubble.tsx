@@ -4,6 +4,7 @@ interface Props {
 }
 
 const FloatingBubble = ({ links }: Props) => {
+
    const toggleMenu = () => {
     if (window.matchMedia('(hover: none)').matches) {
       const dropdown = document.getElementById('hell-menu');
@@ -12,7 +13,7 @@ const FloatingBubble = ({ links }: Props) => {
   };
   
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-10 right-12 z-50">
         <div className="relative w-16 h-16 group">
           <button
             onClick={toggleMenu}

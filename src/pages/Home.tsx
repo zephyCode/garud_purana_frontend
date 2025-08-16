@@ -1,20 +1,12 @@
 import { Link } from "react-router-dom";
 import MainHeader from "../components/MainHeader";
-// You should use the Link component from react-router-dom for navigation
-// since your other components use the router.
-// import { Link } from 'react-router-dom';
-
-// For demonstration, I'll use regular <Link> tags. Replace with <Link> for a single-page app experience.
-// Example: <Link to="/confession"> becomes <Link to="/confession">
 
 const Home = () => {
 
   const links: { name: string; to: string }[] = [
-    {name: 'Confess', to: '/confess'},
-    {name: 'Forum', to: '/forum'}
+    { name: 'Confess', to: '/confess' },
+    { name: 'Forum', to: '/forum' }
   ];
-
-  // HellishIcon removed (unused)
 
   return (
     <div className="min-h-screen bg-black text-gray-300 font-serif overflow-x-hidden">
@@ -33,7 +25,7 @@ const Home = () => {
       <div className="absolute inset-0 bg-black/70 z-10"></div>
 
       <div className="relative z-20">
-        <MainHeader links={links}/>
+        <MainHeader links={links} />
 
         <main>
           <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-24 pb-12">
@@ -87,7 +79,7 @@ const Home = () => {
 
           <section className="py-20">
             <div className="container mx-auto px-6 text-center">
-               <h2 className="text-4xl font-bold text-red-600 mb-4" style={{ fontFamily: 'ZombieFont, sans-serif' }}>
+              <h2 className="text-4xl font-bold text-red-600 mb-4" style={{ fontFamily: 'ZombieFont, sans-serif' }}>
                 Whispers from the Underworld
               </h2>
               <p className="max-w-3xl mx-auto text-lg text-gray-400 mb-8">
@@ -115,13 +107,10 @@ const Home = () => {
           </div>
         </footer>
       </div>
-
-  <style>{`
+      <style>{`
         .drop-shadow-glow {
-          filter: drop-shadow(0 0 8px #ff0000);
+          text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
         }
-        /* You should define the 'ZombieFont' and 'Bloody' font-faces in your global CSS file (e.g., index.css) 
-           so they are available across all components. */
       `}</style>
     </div>
   );
