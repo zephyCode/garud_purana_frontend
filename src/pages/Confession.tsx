@@ -3,15 +3,15 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/fonts.css';
 import './Confession.css';
-// ...existing code...
-import FloatingBubble from '../components/FloatingBubbleComponent';
+import FloatingBubble from '../components/FloatingBubble';
+
+
 const Confession = () => {
-  // removed unused modal-related state
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
     confession: { value: '', isValid: false },
   });
-  // Vite exposes env vars prefixed with VITE_ via import.meta.env
+
   const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
   console.log('VITE_REQUEST_URL ->', REQUEST_URL);
 
@@ -19,7 +19,6 @@ const Confession = () => {
     {name: '🏠 Home', nav:'/'},
     {name: '🔥 Forum', nav:'/forum'}
   ];  
-  // removed hasLoaded effect (unused)
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormValue({
@@ -48,10 +47,6 @@ const Confession = () => {
       console.log('Something went wrong', err);
     }
   };
-
- 
-
-  // anonymous modal is currently disabled; handler removed
 
   return (
     <div className="min-h-screen relative bg-black overflow-hidden">
@@ -187,7 +182,6 @@ const Confession = () => {
           "Your confessions will be judged in the afterlife..."
         </p>
       </div>
-
       <FloatingBubble links={links}/>
     </div>
   );

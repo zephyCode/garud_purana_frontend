@@ -1,0 +1,13 @@
+.rain-overlay {
+  background-image: url("/rain_effect.gif");
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.fog-layer {
+  background-image: url("/fog_overlay.png");
+}
+
+.drop-shadow-glow {
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}

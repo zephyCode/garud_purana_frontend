@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-
 import Upvote from '../components/Upvote';
 import Downvote from '../components/Downvote';
 import MainHeader from '../components/MainHeader';
+import './Forum.css';
 
 interface Entry {
   id: number;
@@ -24,7 +24,10 @@ const Forum = () => {
 
   const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
 
-  const links = [{ name: 'Home', to: '/' }];
+  const links = [
+    { name: 'Home', to: '/' },
+    { name: 'Confess', to: '/confess' },
+  ];
 
   useEffect(() => {
     const loadFingerprint = async () => {
@@ -152,22 +155,6 @@ const Forum = () => {
           </div>
         )}
       </div>
-
-      <style>{`
-        .rain-overlay {
-          background-image: url('/rain_effect.gif');
-          background-size: cover;
-          opacity: 0.2;
-        }
-
-        .fog-layer {
-          background-image: url('/fog_overlay.png');
-        }
-
-        .drop-shadow-glow {
-          text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-        }
-      `}</style>
     </div>
   );
 };

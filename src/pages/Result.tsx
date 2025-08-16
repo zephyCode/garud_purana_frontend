@@ -2,7 +2,7 @@ import Typewriter from 'typewriter-effect';
 import { useLocation } from 'react-router-dom';
 import '../styles/fonts.css';
 import './Result.css';
-import FloatingBubble from '../components/FloatingBubbleComponent';
+import FloatingBubble from '../components/FloatingBubble';
 
 const Result = () => {
     const location = useLocation();
@@ -54,7 +54,6 @@ const Result = () => {
                                 }}
                             />
                         ) : 'No description available.'}
-                        {/* <span className="typewriter-cursor"></span> */}
                     </h2>
                 </div>
             </div>
