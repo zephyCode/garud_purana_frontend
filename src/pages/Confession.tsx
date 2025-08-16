@@ -128,7 +128,7 @@ const Confession = () => {
 
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center px-4 py-8">
         <h1
-          className="text-white text-5xl sm:text-6xl font-extrabold mb-4 animate-typewriter overflow-hidden whitespace-nowrap"
+          className="text-black text-5xl sm:text-6xl font-extrabold mb-4 animate-typewriter overflow-hidden whitespace-nowrap drop-shadow-glow tracking-wider h-[6rem] flex items-center justify-center"
           style={{ fontFamily: 'ZombieFont' }}
         >
           Welcome to NARAKA
@@ -147,7 +147,7 @@ const Confession = () => {
         >
           <label
             htmlFor="message"
-            className="block text-white text-2xl"
+            className="block text-white text-2xl tracking-wider"
             style={{ fontFamily: 'ZombieFont' }}
           >
             Your Confession
