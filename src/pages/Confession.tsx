@@ -1,24 +1,24 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../styles/fonts.css';
-import './Confession.css';
-import FloatingBubble from '../components/FloatingBubble';
-
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "../styles/fonts.css";
+import "./Confession.css";
+import FloatingBubble from "../components/FloatingBubble";
+import Loader from "../components/Loader";
 
 const Confession = () => {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({
-    confession: { value: '', isValid: false },
+    confession: { value: "", isValid: false },
   });
+  const [showLoader, setShowLoader] = useState(false);
 
-  const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || '';
-  console.log('VITE_REQUEST_URL ->', REQUEST_URL);
+  const REQUEST_URL = (import.meta.env.VITE_REQUEST_URL as string) || "";
 
   const links: { name: string; nav: string }[] = [
-    {name: '🏠 Home', nav:'/'},
-    {name: '🔥 Forum', nav:'/forum'}
-  ];  
+    { name: "🏠 Home", nav: "/" },
+    { name: "🔥 Forum", nav: "/forum" },
+  ];
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormValue({
@@ -28,23 +28,27 @@ const Confession = () => {
       },
     });
   };
-  
 
   const formSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+    setShowLoader(true);
     event?.preventDefault();
-    if (!formValue.confession.isValid) return;
+    if (!formValue.confession.isValid) {
+      setShowLoader(false);
+      return;
+    }
     try {
-  const postUrl = REQUEST_URL;
-  const response = await axios.post(postUrl, {
+      const postUrl = REQUEST_URL;
+      const response = await axios.post(postUrl, {
         text: formValue.confession.value,
       });
       if (response.status === 200) {
-        navigate('/result', { state: { result: response.data } });
+        navigate("/result", { state: { result: response.data } });
       } else {
-        console.log('There is some internal error');
+        setShowLoader(false);
       }
     } catch (err) {
-      console.log('Something went wrong', err);
+      console.error("Something went wrong", err);
+      setShowLoader(false);
     }
   };
 
@@ -129,14 +133,14 @@ const Confession = () => {
       <div className="relative z-20 flex flex-col items-center justify-center min-h-screen text-center px-4 py-8">
         <h1
           className="text-black text-5xl sm:text-6xl font-extrabold mb-4 animate-typewriter overflow-hidden whitespace-nowrap drop-shadow-glow tracking-wider h-[6rem] flex items-center justify-center"
-          style={{ fontFamily: 'ZombieFont' }}
+          style={{ fontFamily: "ZombieFont" }}
         >
           Welcome to NARAKA
         </h1>
 
         <p
           className="text-red-500 font-bold text-xl sm:text-2xl mb-8 animate-pulse"
-          style={{ fontFamily: 'Bloody' }}
+          style={{ fontFamily: "Bloody" }}
         >
           Get ready to face the consequences of your sins in your afterlife...
         </p>
@@ -148,7 +152,7 @@ const Confession = () => {
           <label
             htmlFor="message"
             className="block text-white text-2xl tracking-wider"
-            style={{ fontFamily: 'ZombieFont' }}
+            style={{ fontFamily: "ZombieFont" }}
           >
             Your Confession
           </label>
@@ -159,30 +163,34 @@ const Confession = () => {
             value={formValue.confession.value}
             onChange={inputChangeHandler}
             className="w-full bg-black/80 border border-red-500 text-white p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 placeholder-gray-400"
-            style={{ fontFamily: 'Bloody' }}
+            style={{ fontFamily: "Bloody" }}
           />
 
-          <button
-            type="submit"
-            disabled={!formValue.confession.isValid}
-            className={`w-full py-3 font-bold uppercase text-xl rounded-lg transition-all ${formValue.confession.isValid
-                ? 'bg-gradient-to-r from-red-600 to-red-900 hover:scale-105'
-                : 'bg-gray-600 cursor-not-allowed'
+          {showLoader ? <Loader/> : (
+            <button
+              type="submit"
+              disabled={!formValue.confession.isValid}
+              className={`w-full py-3 font-bold uppercase text-xl rounded-lg transition-all ${
+                formValue.confession.isValid
+                  ? "bg-gradient-to-r from-red-600 to-red-900 hover:scale-105"
+                  : "bg-gray-600 cursor-not-allowed"
               }`}
-            style={{ fontFamily: 'ZombieFont' }}
-          >
-            Submit Confession
-          </button>
+              style={{ fontFamily: "ZombieFont" }}
+            >
+              Submit Confession
+            </button>
+          )}
         </form>
+        
 
         <p
           className="text-gray-300 italic mt-6 animate-fade-in"
-          style={{ fontFamily: 'Bloody' }}
+          style={{ fontFamily: "Bloody" }}
         >
           "Your confessions will be judged in the afterlife..."
         </p>
       </div>
-      <FloatingBubble links={links}/>
+      <FloatingBubble links={links} />
     </div>
   );
 };

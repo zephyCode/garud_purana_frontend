@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
+
 import MainHeader from '../components/MainHeader';
 import './Forum.css';
 import ListItem from '../components/ListItem';
@@ -11,7 +12,6 @@ interface Entry {
   user_query: string;
   upvotes: number;
   downvotes: number;
-  punishment: string;
 }
 
 type VoteType = 'upvote' | 'downvote';
@@ -30,6 +30,17 @@ const Forum = () => {
     { name: 'Confess', to: '/confess' },
   ];
 
+  const fetchEntries = useCallback(async () => {
+    try {
+      const res = await axios.get(`${REQUEST_URL}/forum`);
+      setEntries(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching entries:', err);
+      setLoading(false);
+    }
+  }, [REQUEST_URL]);
+
   useEffect(() => {
     const loadFingerprint = async () => {
       const fp = await FingerprintJS.load();
@@ -39,24 +50,7 @@ const Forum = () => {
 
     loadFingerprint();
     fetchEntries();
-  });
-
-  const fetchEntries = async () => {
-    try {
-      const res = await axios.get(`${REQUEST_URL}/forum`);
-      setEntries(
-          res.data.map((item) => ({
-            ...item,
-            punishment: item.max_cosine_score < 0.225 ? '' : item.predicted_class
-          })
-        )
-      );
-      setLoading(false);
-    } catch (err) {
-      console.error('Error fetching entries:', err);
-      setLoading(false);
-    }
-  };
+  }, [fetchEntries]);
 
   useEffect(() => {
     const fetchVotes = async () => {
@@ -79,10 +73,11 @@ const Forum = () => {
     };
 
     fetchVotes();
-  }, [fingerprint]);
+  }, [fingerprint, REQUEST_URL]);
 
   const handleVote = async (entryId: number, voteType: VoteType) => {
     if (!fingerprint) return;
+
     setVotes((prev) => ({ ...prev, [entryId]: voteType }));
     setEntries((prev) =>
       prev.map((e) =>
@@ -129,16 +124,15 @@ const Forum = () => {
           <div className="text-center text-gray-400 text-lg animate-pulse">Fetching sins from the underworld...</div>
         ) : (
           <div className="space-y-6 max-w-3xl mx-auto">
-            {entries.map((item) => (
+            {entries.map((entry) => (
               <ListItem
-                key={item.id}
-                id={item.id}
-                date={new Date(item.created_on).toLocaleString()}
-                user_query={item.user_query}
-                upvotes={item.upvotes}
-                downvotes={item.downvotes}
-                voted={votes[item.id]}
-                punishment={item.punishment}
+                key={entry.id}
+                id={entry.id}
+                date={new Date(entry.created_on).toLocaleString()}
+                user_query={entry.user_query}
+                upvotes={entry.upvotes}
+                downvotes={entry.downvotes}
+                voted={votes[entry.id]}
                 onVote={handleVote}
               />
             ))}

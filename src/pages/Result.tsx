@@ -9,7 +9,8 @@ const Result = () => {
     const { result } = location.state || {};
     const links: { name: string; nav: string }[] = [
     {name: '🏠 Home', nav:'/'},
-    {name: '🔥 Forum', nav:'/forum'}
+    {name: '🔥 Forum', nav:'/forum'},
+    {name: '🔥 Confess', nav:'/confess'},
   ];  
 
     return (
